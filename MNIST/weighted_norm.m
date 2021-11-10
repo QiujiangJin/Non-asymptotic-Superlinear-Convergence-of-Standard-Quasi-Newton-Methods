@@ -53,9 +53,10 @@ disp("Initialization Finish");
 
 y_gd = [1];
 w = w_0;
+eta = 1./L;
 
 for iter = 1:20
-    w = w - (1./sqrt(iter))*loss_gradient(X_train, Y_train, w, mu);
+    w = w - eta*loss_gradient(X_train, Y_train, w, mu);
     y_gd = [y_gd, norm(M*(w - w_opt))/norm(M*(w_0 - w_opt))];
 end
 
