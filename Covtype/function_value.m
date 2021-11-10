@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%% Train Data Initialization %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-[Y, X] = libsvmread('covtype.libsvm.binary');
+[Y, X] = libsvmread('Data/covtype.libsvm.binary');
 Y = Y - 1;
 X = normalize_row(X);
 [N, d] = size(X);
@@ -33,9 +33,10 @@ disp("Initialization Finish");
 
 y_gd = [1];
 w = w_0;
+eta = 1./L;
 
 for iter = 1:20
-    w = w - (1./sqrt(iter))*loss_gradient(X_train, Y_train, w, mu);
+    w = w - eta*loss_gradient(X_train, Y_train, w, mu);
     y_gd = [y_gd, (loss_function(X_train, Y_train, w, mu) - minimizer)/(loss_function(X_train, Y_train, w_0, mu) - minimizer)];
 end
 
