@@ -11,7 +11,7 @@ d = 5000;
 mu = 0.01;
 L = mu + 1;
 N = 6000;
-w_0 = 0.08*ones(d, 1);
+w_0 = 0.1*ones(d, 1);
 w = w_0;
 
 epsilon = 1e-16;
@@ -32,9 +32,10 @@ disp("Initialization Finish");
 
 y_gd = [1];
 w = w_0;
+eta = 1./L;
 
 for iter = 1:20
-    w = w - (1./sqrt(iter))*loss_gradient(X_train, Y_train, w, mu);
+    w = w - eta*loss_gradient(X_train, Y_train, w, mu);
     y_gd = [y_gd, (loss_function(X_train, Y_train, w, mu) - minimizer)/(loss_function(X_train, Y_train, w_0, mu) - minimizer)];
 end
 
