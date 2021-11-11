@@ -33,7 +33,7 @@ disp("Initialization Finish");
 
 y_gd = [1];
 w = w_0;
-eta = 1./L;
+eta = 8./L;
 
 for iter = 1:20
     w = w - eta*loss_gradient(X_train, Y_train, w, mu);
@@ -110,7 +110,7 @@ semilogy(x, y_bfgs, '-.*r', 'LineWidth', 3);
 hold on
 semilogy(x, y_dfp, '-.*b', 'LineWidth', 3);
 semilogy(x, y_n, '-.*g', 'LineWidth', 3);
-semilogy(x, y_gd, '-.*y', 'LineWidth', 3);
+semilogy(x, y_gd, '-.*k', 'LineWidth', 3);
 semilogy(x, y, '-.*m', 'LineWidth', 3);
 l = legend({'BFGS', 'DFP', 'Newton', 'Gradient Descent', '$\left(\frac{1}{k}\right)^{k}$'});
 set(l, 'Interpreter', 'latex', 'fontsize', 20, 'Location', 'northeast')
